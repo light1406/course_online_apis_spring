@@ -14,20 +14,22 @@ public class AnswerEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
-	
+
 	private String key;
 	private String value;
 	private boolean isCorrect;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "question_id")
 	private QuestionEntity question;
 
-	public AnswerEntity(String key, String value, boolean isCorrect) {
+	public AnswerEntity(String id, String key, String value, boolean isCorrect, QuestionEntity question) {
 		super();
+		this.id = id;
 		this.key = key;
 		this.value = value;
 		this.isCorrect = isCorrect;
+		this.question = question;
 	}
 
 	public String getId() {

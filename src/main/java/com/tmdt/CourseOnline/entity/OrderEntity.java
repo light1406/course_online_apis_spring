@@ -67,4 +67,12 @@ public class OrderEntity {
 	public void setUser(UserEntity user) {
 		this.user = user;
 	}
+
+	public List<CourseEntity> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<CourseEntity> courses) {
+		this.courses = courses;
+	}
 }

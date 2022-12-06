@@ -17,13 +17,13 @@ public class QuestionEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
-	
+
 	private String question;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "lesson_question_id")
 	private LessonQuestionEntity lessonQuestion;
-	
+
 	@OneToMany(mappedBy = "question")
 	private List<AnswerEntity> answers;
 
@@ -54,5 +54,13 @@ public class QuestionEntity {
 
 	public void setLessonQuestion(LessonQuestionEntity lessonQuestion) {
 		this.lessonQuestion = lessonQuestion;
+	}
+
+	public List<AnswerEntity> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<AnswerEntity> answers) {
+		this.answers = answers;
 	}
 }
