@@ -5,11 +5,11 @@ public class AccountDto {
 	private UserDto user;
 	private String username;
 	private String password;
-	private String role;
+	private int role;
 	
 	public AccountDto() {}
 
-	public AccountDto(UserDto user, String username, String password, String role) {
+	public AccountDto(UserDto user, String username, String password, int role) {
 		super();
 		this.user = user;
 		this.username = username;
@@ -41,11 +41,11 @@ public class AccountDto {
 		this.password = password;
 	}
 
-	public String getRole() {
+	public int getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(int role) {
 		this.role = role;
 	}
 }

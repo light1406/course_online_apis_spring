@@ -18,11 +18,12 @@ public class AccountEntity {
 	@JoinColumn(name = "user_id")
 	private UserEntity user;
 
-	public AccountEntity(String username, String password, int role) {
+	public AccountEntity(String username, String password, int role, UserEntity user) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.role = role;
+		this.user = user;
 	}
 
 	public String getUsername() {
