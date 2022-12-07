@@ -35,7 +35,15 @@ CREATE TABLE `chapter`  (
   `title` varchar(255) NULL,
   `serial` int NULL,
   `course_id` varchar(20) NULL,
-	`manufacture` datetime NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `comment`  (
+  `id` varchar(20) NOT NULL,
+  `user_id` varchar(20) NULL,
+  `comment` varchar(255) NULL,
+  `lesson_video_id` varchar(20) NULL,
+  `time` datetime NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -46,6 +54,7 @@ CREATE TABLE `course`  (
   `price` decimal(10, 2) NULL,
   `manufacture` datetime NULL,
   `corver_url` varchar(255) NULL,
+  `description` varchar(255) NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -53,6 +62,16 @@ CREATE TABLE `course_of_user`  (
   `user_id` varchar(20) NOT NULL,
   `course_id` varchar(20) NOT NULL,
   PRIMARY KEY (`user_id`, `course_id`)
+);
+
+CREATE TABLE `evaluation`  (
+  `id` varchar(20) NOT NULL,
+  `user_id` varchar(20) NULL,
+  `score` int NULL,
+  `comment` varchar(255) NULL,
+  `course_id` varchar(20) NULL,
+  `time` datetime NULL,
+  PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `learned_lesson_question`  (
@@ -106,7 +125,16 @@ CREATE TABLE `order_detail`  (
 CREATE TABLE `question`  (
   `id` varchar(20) NOT NULL,
   `question` varchar(255) NULL,
-  `lesson_question_id` varchar(20) NULL,
+  `lession_question_id` varchar(20) NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `reply`  (
+  `id` varchar(20) NOT NULL,
+  `user_id` varchar(20) NULL,
+  `comment` varchar(255) NULL,
+  `comment_id` varchar(20) NULL,
+  `time` datetime NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -124,9 +152,13 @@ ALTER TABLE `account` ADD CONSTRAINT `fk_user_account` FOREIGN KEY (`user_id`) R
 ALTER TABLE `answer` ADD CONSTRAINT `fk_question_answer` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`);
 ALTER TABLE `benefit` ADD CONSTRAINT `fk_course_benefit` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`);
 ALTER TABLE `chapter` ADD CONSTRAINT `fk_course_chapter` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`);
+ALTER TABLE `comment` ADD CONSTRAINT `fk_user_cmt` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+ALTER TABLE `comment` ADD CONSTRAINT `fk_lesson_video_cmt` FOREIGN KEY (`lesson_video_id`) REFERENCES `lesson_video` (`id`);
 ALTER TABLE `course` ADD CONSTRAINT `fk_category_course` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
 ALTER TABLE `course_of_user` ADD CONSTRAINT `fk_user_cou` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 ALTER TABLE `course_of_user` ADD CONSTRAINT `fk_course_cou` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`);
+ALTER TABLE `evaluation` ADD CONSTRAINT `fk_user_evl` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+ALTER TABLE `evaluation` ADD CONSTRAINT `fk_course_evl` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`);
 ALTER TABLE `learned_lesson_question` ADD CONSTRAINT `fk_user_llq` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 ALTER TABLE `learned_lesson_question` ADD CONSTRAINT `fk_lesson_question_llq` FOREIGN KEY (`lesson_question_id`) REFERENCES `lesson_question` (`id`);
 ALTER TABLE `learned_lesson_video` ADD CONSTRAINT `fk_user_llv` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
@@ -136,5 +168,7 @@ ALTER TABLE `lesson_video` ADD CONSTRAINT `fk_chapter_lv` FOREIGN KEY (`chapter_
 ALTER TABLE `order` ADD CONSTRAINT `fk_user_order` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 ALTER TABLE `order_detail` ADD CONSTRAINT `fk_order_od` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`);
 ALTER TABLE `order_detail` ADD CONSTRAINT `fk_course_od` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`);
-ALTER TABLE `question` ADD CONSTRAINT `fk_lesson_question_q` FOREIGN KEY (`lesson_question_id`) REFERENCES `lesson_question` (`id`);
+ALTER TABLE `question` ADD CONSTRAINT `fk_lession_question_q` FOREIGN KEY (`lession_question_id`) REFERENCES `lesson_question` (`id`);
+ALTER TABLE `reply` ADD CONSTRAINT `fk_user_reply` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+ALTER TABLE `reply` ADD CONSTRAINT `fk_comment_reply` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`id`);
 

@@ -49,6 +49,15 @@ public class UserEntity {
 	
 	@OneToMany(mappedBy = "user")
 	private List<OrderEntity> orders; 
+	
+	@OneToMany(mappedBy = "user")
+	private List<EvaluationEntity> evaluations;
+	
+	@OneToMany(mappedBy = "user")
+	private List<CommentEntity> comments;
+	
+	@OneToMany(mappedBy = "user")
+	private List<ReplyEntity> replies;
 
 	public UserEntity(String fname, String avtUrl, int age, String email, String phone) {
 		this.fname = fname;

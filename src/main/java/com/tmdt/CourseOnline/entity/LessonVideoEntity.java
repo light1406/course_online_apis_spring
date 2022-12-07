@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -31,6 +32,9 @@ public class LessonVideoEntity {
 	
 	@ManyToMany(mappedBy = "learnedLessonVideos")
 	private List<UserEntity> users;
+	
+	@OneToMany(mappedBy = "lessonVideo")
+	private List<CommentEntity> comments;
 
 	public LessonVideoEntity(String title, int serial, String linkVideo, long time, String description, Date manufacture) {
 		super();
@@ -41,7 +45,7 @@ public class LessonVideoEntity {
 		this.description = description;
 		this.manufacture = manufacture;
 	}
-
+	
 	public String getId() {
 		return id;
 	}
@@ -112,5 +116,13 @@ public class LessonVideoEntity {
 
 	public void setUsers(List<UserEntity> users) {
 		this.users = users;
+	}
+
+	public List<CommentEntity> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentEntity> comments) {
+		this.comments = comments;
 	}
 }
