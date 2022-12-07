@@ -7,28 +7,48 @@ public class CourseDto {
 	private String id;
 	private String title;
 	private String category;
+	private String description;
 	private List<String> benefit;
 	private List<ChapterDto> chapters;
 	private double price;
 	private Date manufacture;
+	private List<EvaluationDto> evaluations;
 
 	public CourseDto() {
 	}
 
-	public CourseDto(String id, String title, String category, List<String> benefit, List<ChapterDto> chapters,
-			double price, Date manufacture) {
+	public CourseDto(String id, String title, String category, String description, List<String> benefit,
+			List<ChapterDto> chapters, double price, Date manufacture, List<EvaluationDto> evaluations) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.category = category;
+		this.description = description;
 		this.benefit = benefit;
 		this.chapters = chapters;
 		this.price = price;
 		this.manufacture = manufacture;
+		this.evaluations = evaluations;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getId() {
 		return id;
+	}
+
+	public List<EvaluationDto> getEvaluations() {
+		return evaluations;
+	}
+
+	public void setEvaluations(List<EvaluationDto> evaluations) {
+		this.evaluations = evaluations;
 	}
 
 	public void setId(String id) {

@@ -3,10 +3,15 @@ package com.tmdt.CourseOnline.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.tmdt.CourseOnline.dto.LessonVideoDto;
 import com.tmdt.CourseOnline.entity.LessonVideoEntity;
 
 public class LessonVideoMapper {
+	@Autowired
+	private CommentMapper commentMapper;
+	
 	public LessonVideoDto mapEntityToDto(LessonVideoEntity lessonVideoEntity) {
 		return new LessonVideoDto(
 				lessonVideoEntity.getId(), 
@@ -15,7 +20,8 @@ public class LessonVideoMapper {
 				lessonVideoEntity.getDescription(), 
 				lessonVideoEntity.getManufacture(), 
 				lessonVideoEntity.getLinkVideo(), 
-				lessonVideoEntity.getTime());
+				lessonVideoEntity.getTime(),
+				commentMapper.mapListEntityToListDto(lessonVideoEntity.getComments()));
 	}
 
 	public List<LessonVideoDto> mapListEntityToListDto(List<LessonVideoEntity> lessonVideoEntities) {

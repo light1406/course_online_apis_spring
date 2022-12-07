@@ -13,17 +13,22 @@ public class CourseMapper {
 	@Autowired
 	private ChapterMapper chapterMapper;
 	
+	@Autowired
+	private EvaluationMapper evaluationMapper;
+	
 	public CourseDto mapEntityToDto(CourseEntity courseEntity) {
 		List<String> benefits = new ArrayList<>();
 		courseEntity.getBenefits().forEach(b -> {benefits.add(b.getDescription());});
 		return new CourseDto(
 				courseEntity.getId(), 
 				courseEntity.getTitle(), 
-				courseEntity.getCategory().getCategory(), 
+				courseEntity.getCategory().getCategory(),
+				courseEntity.getDescription(),
 				benefits, 
 				chapterMapper.mapListEntityToListDto(courseEntity.getChapters()), 
 				courseEntity.getPrice(), 
-				courseEntity.getManufacture());
+				courseEntity.getManufacture(),
+				evaluationMapper.mapListEntityToListDto(courseEntity.getEvaluations()));
 	}
 
 	public List<CourseDto> mapListEntityToListDto(List<CourseEntity> courseEntities) {

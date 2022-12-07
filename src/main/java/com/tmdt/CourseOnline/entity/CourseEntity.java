@@ -22,6 +22,7 @@ public class CourseEntity {
 	private String id;
 	private String title;
 	private double price;
+	private String description;
 	private String coverUrl;
 	private Date manufacture;
 
@@ -37,16 +38,28 @@ public class CourseEntity {
 
 	@ManyToMany(mappedBy = "coursesOfUser")
 	private List<UserEntity> users;
-	
+
 	@ManyToMany(mappedBy = "courses")
 	private List<OrderEntity> orders;
-	
-	public CourseEntity(String title, double price, String coverUrl, Date manufacture) {
+
+	@OneToMany(mappedBy = "course")
+	private List<EvaluationEntity> evaluations;
+
+	public CourseEntity(String id, String title, double price, String description, String coverUrl, Date manufacture,
+			CategoryEntity category, List<BenefitEntity> benefits, List<ChapterEntity> chapters, List<UserEntity> users,
+			List<OrderEntity> orders) {
 		super();
+		this.id = id;
 		this.title = title;
 		this.price = price;
+		this.description = description;
 		this.coverUrl = coverUrl;
 		this.manufacture = manufacture;
+		this.category = category;
+		this.benefits = benefits;
+		this.chapters = chapters;
+		this.users = users;
+		this.orders = orders;
 	}
 
 	public String getId() {
@@ -73,12 +86,36 @@ public class CourseEntity {
 		this.price = price;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<OrderEntity> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<OrderEntity> orders) {
+		this.orders = orders;
+	}
+
 	public String getCoverUrl() {
 		return coverUrl;
 	}
 
 	public void setCoverUrl(String coverUrl) {
 		this.coverUrl = coverUrl;
+	}
+
+	public List<EvaluationEntity> getEvaluations() {
+		return evaluations;
+	}
+
+	public void setEvaluations(List<EvaluationEntity> evaluations) {
+		this.evaluations = evaluations;
 	}
 
 	public Date getManufacture() {
