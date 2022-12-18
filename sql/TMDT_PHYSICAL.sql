@@ -11,7 +11,7 @@ CREATE TABLE `account`  (
 CREATE TABLE `answer`  (
   `id` varchar(20) NOT NULL,
   `key` varchar(255) NULL,
-  `value` varchar(255) NULL,
+  `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `is_correct` bit NULL,
   `question_id` varchar(20) NULL,
   PRIMARY KEY (`id`)
@@ -19,20 +19,20 @@ CREATE TABLE `answer`  (
 
 CREATE TABLE `benefit`  (
   `id` varchar(20) NOT NULL,
-  `description` varchar(255) NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `course_id` varchar(20) NULL,
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `category`  (
   `id` varchar(20) NOT NULL,
-  `category` varchar(255) NULL,
+  `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `chapter`  (
   `id` varchar(20) NOT NULL,
-  `title` varchar(255) NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `serial` int NULL,
   `course_id` varchar(20) NULL,
   PRIMARY KEY (`id`)
@@ -41,20 +41,21 @@ CREATE TABLE `chapter`  (
 CREATE TABLE `comment`  (
   `id` varchar(20) NOT NULL,
   `user_id` varchar(20) NULL,
-  `comment` varchar(255) NULL,
+  `comment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `lesson_video_id` varchar(20) NULL,
   `time` datetime NULL,
+  `comment_id` varchar(20) NULL,
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `course`  (
   `id` varchar(20) NOT NULL,
-  `title` varchar(255) NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `category_id` varchar(20) NULL,
   `price` decimal(10, 2) NULL,
   `manufacture` datetime NULL,
   `corver_url` varchar(255) NULL,
-  `description` varchar(255) NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -68,7 +69,7 @@ CREATE TABLE `evaluation`  (
   `id` varchar(20) NOT NULL,
   `user_id` varchar(20) NULL,
   `score` int NULL,
-  `comment` varchar(255) NULL,
+  `comment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `course_id` varchar(20) NULL,
   `time` datetime NULL,
   PRIMARY KEY (`id`)
@@ -88,9 +89,9 @@ CREATE TABLE `learned_lesson_video`  (
 
 CREATE TABLE `lesson_question`  (
   `id` varchar(20) NOT NULL,
-  `title` varchar(255) NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `serial` int NULL,
-  `description` varchar(255) NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `chapter_id` varchar(20) NULL,
   `manufacture` datetime NULL,
   PRIMARY KEY (`id`)
@@ -98,10 +99,10 @@ CREATE TABLE `lesson_question`  (
 
 CREATE TABLE `lesson_video`  (
   `id` varchar(20) NOT NULL,
-  `title` varchar(255) NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `serial` int NULL,
-  `description` varchar(255) NULL,
-  `link_video` varchar(255) NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `link_video` varchar(1000) NULL,
   `time` longtext NULL,
   `chapter_id` varchar(20) NULL,
   `manufacture` datetime NULL,
@@ -111,7 +112,7 @@ CREATE TABLE `lesson_video`  (
 CREATE TABLE `order`  (
   `id` varchar(20) NOT NULL,
   `user_id` varchar(20) NULL,
-  `status` varchar(255) NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `purchase_date` datetime NULL,
   PRIMARY KEY (`id`)
 );
@@ -124,23 +125,14 @@ CREATE TABLE `order_detail`  (
 
 CREATE TABLE `question`  (
   `id` varchar(20) NOT NULL,
-  `question` varchar(255) NULL,
+  `question` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `lession_question_id` varchar(20) NULL,
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `reply`  (
-  `id` varchar(20) NOT NULL,
-  `user_id` varchar(20) NULL,
-  `comment` varchar(255) NULL,
-  `comment_id` varchar(20) NULL,
-  `time` datetime NULL,
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `user`  (
   `id` varchar(20) NOT NULL,
-  `fname` varchar(255) NULL,
+  `fname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `avtURL` varchar(255) NULL,
   `age` int NULL,
   `email` varchar(255) NULL,
@@ -154,6 +146,7 @@ ALTER TABLE `benefit` ADD CONSTRAINT `fk_course_benefit` FOREIGN KEY (`course_id
 ALTER TABLE `chapter` ADD CONSTRAINT `fk_course_chapter` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`);
 ALTER TABLE `comment` ADD CONSTRAINT `fk_user_cmt` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 ALTER TABLE `comment` ADD CONSTRAINT `fk_lesson_video_cmt` FOREIGN KEY (`lesson_video_id`) REFERENCES `lesson_video` (`id`);
+ALTER TABLE `comment` ADD CONSTRAINT `fk_cmt_cmt` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`id`);
 ALTER TABLE `course` ADD CONSTRAINT `fk_category_course` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
 ALTER TABLE `course_of_user` ADD CONSTRAINT `fk_user_cou` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 ALTER TABLE `course_of_user` ADD CONSTRAINT `fk_course_cou` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`);
@@ -169,6 +162,4 @@ ALTER TABLE `order` ADD CONSTRAINT `fk_user_order` FOREIGN KEY (`user_id`) REFER
 ALTER TABLE `order_detail` ADD CONSTRAINT `fk_order_od` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`);
 ALTER TABLE `order_detail` ADD CONSTRAINT `fk_course_od` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`);
 ALTER TABLE `question` ADD CONSTRAINT `fk_lession_question_q` FOREIGN KEY (`lession_question_id`) REFERENCES `lesson_question` (`id`);
-ALTER TABLE `reply` ADD CONSTRAINT `fk_user_reply` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
-ALTER TABLE `reply` ADD CONSTRAINT `fk_comment_reply` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`id`);
 

@@ -3,8 +3,6 @@ package com.tmdt.CourseOnline.entity;
 import java.util.List;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -14,14 +12,16 @@ import jakarta.persistence.Table;
 public class CategoryEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	private String category;
-	
+
 	@OneToMany(mappedBy = "category")
 	private List<CourseEntity> courses;
-	
-	public CategoryEntity(String category) {
+
+	public CategoryEntity() {}
+
+	public CategoryEntity(String id, String category) {
+		this.id = id;
 		this.category = category;
 	}
 

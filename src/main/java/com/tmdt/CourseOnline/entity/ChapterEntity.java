@@ -1,6 +1,5 @@
 package com.tmdt.CourseOnline.entity;
 
-import java.sql.Date;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -16,11 +15,9 @@ import jakarta.persistence.Table;
 @Table(name = "chapter")
 public class ChapterEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	private String title;
 	private int serial;
-	private Date manufacture;
 
 	@ManyToOne
 	@JoinColumn(name = "course_id")
@@ -31,12 +28,13 @@ public class ChapterEntity {
 
 	@OneToMany(mappedBy = "chapter")
 	private List<LessonVideoEntity> lessonVideos;
+	
+	public ChapterEntity() {}
 
-	public ChapterEntity(String title, int serial, Date manufacture) {
+	public ChapterEntity(String title, int serial) {
 		super();
 		this.title = title;
 		this.serial = serial;
-		this.manufacture = manufacture;
 	}
 
 	public String getId() {
@@ -69,29 +67,5 @@ public class ChapterEntity {
 
 	public void setCourse(CourseEntity course) {
 		this.course = course;
-	}
-
-	public Date getManufacture() {
-		return manufacture;
-	}
-
-	public void setManufacture(Date manufacture) {
-		this.manufacture = manufacture;
-	}
-
-	public List<LessonQuestionEntity> getLessonQuestions() {
-		return lessonQuestions;
-	}
-
-	public void setLessonQuestions(List<LessonQuestionEntity> lessonQuestions) {
-		this.lessonQuestions = lessonQuestions;
-	}
-
-	public List<LessonVideoEntity> getLessonVideos() {
-		return lessonVideos;
-	}
-
-	public void setLessonVideos(List<LessonVideoEntity> lessonVideos) {
-		this.lessonVideos = lessonVideos;
 	}
 }

@@ -3,9 +3,8 @@ package com.tmdt.CourseOnline.entity;
 import java.sql.Date;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
@@ -18,11 +17,11 @@ import jakarta.persistence.Table;
 public class CourseEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	private String title;
 	private double price;
 	private String description;
+	@Column(name = "corver_url")
 	private String coverUrl;
 	private Date manufacture;
 
@@ -45,6 +44,9 @@ public class CourseEntity {
 	@OneToMany(mappedBy = "course")
 	private List<EvaluationEntity> evaluations;
 
+	public CourseEntity() {
+	}
+
 	public CourseEntity(String id, String title, double price, String description, String coverUrl, Date manufacture,
 			CategoryEntity category, List<BenefitEntity> benefits, List<ChapterEntity> chapters, List<UserEntity> users,
 			List<OrderEntity> orders) {
@@ -60,6 +62,14 @@ public class CourseEntity {
 		this.chapters = chapters;
 		this.users = users;
 		this.orders = orders;
+	}
+
+	@Override
+	public String toString() {
+		return "CourseEntity [id=" + id + ", title=" + title + ", price=" + price + ", description=" + description
+				+ ", coverUrl=" + coverUrl + ", manufacture=" + manufacture + ", category=" + category + ", benefits="
+				+ benefits + ", chapters=" + chapters + ", users=" + users + ", orders=" + orders + ", evaluations="
+				+ evaluations + "]";
 	}
 
 	public String getId() {
@@ -132,29 +142,5 @@ public class CourseEntity {
 
 	public void setCategory(CategoryEntity category) {
 		this.category = category;
-	}
-
-	public List<ChapterEntity> getChapters() {
-		return chapters;
-	}
-
-	public void setChapters(List<ChapterEntity> chapters) {
-		this.chapters = chapters;
-	}
-
-	public List<BenefitEntity> getBenefits() {
-		return benefits;
-	}
-
-	public void setBenefits(List<BenefitEntity> benefits) {
-		this.benefits = benefits;
-	}
-
-	public List<UserEntity> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<UserEntity> users) {
-		this.users = users;
 	}
 }

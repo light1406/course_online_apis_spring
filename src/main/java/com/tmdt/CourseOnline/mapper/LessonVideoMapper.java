@@ -12,21 +12,21 @@ public class LessonVideoMapper {
 	@Autowired
 	private CommentMapper commentMapper;
 	
-	public LessonVideoDto mapEntityToDto(LessonVideoEntity lessonVideoEntity) {
-		return new LessonVideoDto(
-				lessonVideoEntity.getId(), 
-				lessonVideoEntity.getTitle(), 
-				lessonVideoEntity.getSerial(), 
-				lessonVideoEntity.getDescription(), 
-				lessonVideoEntity.getManufacture(), 
-				lessonVideoEntity.getLinkVideo(), 
-				lessonVideoEntity.getTime(),
-				commentMapper.mapListEntityToListDto(lessonVideoEntity.getComments()));
-	}
-
-	public List<LessonVideoDto> mapListEntityToListDto(List<LessonVideoEntity> lessonVideoEntities) {
-		List<LessonVideoDto> lessonVideoDtos = new ArrayList<>();
-		lessonVideoEntities.forEach(ls -> {lessonVideoDtos.add(mapEntityToDto(ls));});
-		return lessonVideoDtos;
-	}
+//	public LessonVideoDto mapEntityToDto(LessonVideoEntity lessonVideoEntity) {
+//		return new LessonVideoDto(
+//				lessonVideoEntity.getId(), 
+//				lessonVideoEntity.getTitle(), 
+//				lessonVideoEntity.getSerial(), 
+//				lessonVideoEntity.getDescription(), 
+//				lessonVideoEntity.getManufacture(), 
+//				lessonVideoEntity.getLinkVideo(), 
+//				lessonVideoEntity.getTime(),
+//				commentMapper.mapListEntityToListDto(lessonVideoEntity.getComments()));
+//	}
+//
+//	public List<LessonVideoDto> mapListEntityToListDto(List<LessonVideoEntity> lessonVideoEntities) {
+//		List<LessonVideoDto> lessonVideoDtos = new ArrayList<>();
+//		lessonVideoEntities.forEach(ls -> {lessonVideoDtos.add(mapEntityToDto(ls));});
+//		return lessonVideoDtos;
+//	}
 }

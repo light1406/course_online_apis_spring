@@ -8,12 +8,12 @@ public class CommentDto {
 	private String comment;
 	private Date time;
 	private UserDto user;
-	private List<ReplyDto> replies;
+	private List<CommentDto> replies;
 
 	public CommentDto() {
 	}
 
-	public CommentDto(String id, String comment, Date time, UserDto user, List<ReplyDto> replies) {
+	public CommentDto(String id, String comment, Date time, UserDto user, List<CommentDto> replies) {
 		super();
 		this.id = id;
 		this.comment = comment;
@@ -54,11 +54,11 @@ public class CommentDto {
 		this.user = user;
 	}
 
-	public List<ReplyDto> getReplies() {
+	public List<CommentDto> getReplies() {
 		return replies;
 	}
 
-	public void setReplies(List<ReplyDto> replies) {
+	public void setReplies(List<CommentDto> replies) {
 		this.replies = replies;
 	}
 }

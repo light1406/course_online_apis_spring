@@ -7,5 +7,4 @@ import com.tmdt.CourseOnline.entity.AccountEntity;
 
 @Repository
 public interface AccountRepository extends JpaRepository<AccountEntity, String>{
-
 }

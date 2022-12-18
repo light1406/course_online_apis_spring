@@ -17,7 +17,6 @@ import jakarta.persistence.Table;
 @Table(name = "lesson_video")
 public class LessonVideoEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	private String title;
 	private int serial;
@@ -36,6 +35,8 @@ public class LessonVideoEntity {
 	@OneToMany(mappedBy = "lessonVideo")
 	private List<CommentEntity> comments;
 
+	public LessonVideoEntity() {}
+	
 	public LessonVideoEntity(String title, int serial, String linkVideo, long time, String description, Date manufacture) {
 		super();
 		this.title = title;
