@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "order")
+@Table(name = "`order`")
 public class OrderEntity {
 	
 	@Id
@@ -30,6 +30,8 @@ public class OrderEntity {
 			, inverseJoinColumns = @JoinColumn(name = "course_id"))
 	private List<CourseEntity> courses;
 
+	public OrderEntity() {}
+	
 	public OrderEntity(String status, Date purchaseDate) {
 		super();
 		this.status = status;

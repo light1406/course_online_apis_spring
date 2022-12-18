@@ -18,7 +18,6 @@ import jakarta.persistence.Table;
 public class LessonQuestionEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	private String title;
 	private int serial;
@@ -34,6 +33,8 @@ public class LessonQuestionEntity {
 	
 	@ManyToMany(mappedBy = "learnedLessonQuestions")
 	private List<UserEntity> users;
+	
+	public LessonQuestionEntity() {}
 
 	public LessonQuestionEntity(String title, int serial, String description, Date manufacture) {
 		super();
@@ -89,21 +90,5 @@ public class LessonQuestionEntity {
 
 	public void setChapter(ChapterEntity chapter) {
 		this.chapter = chapter;
-	}
-
-	public List<QuestionEntity> getQuestions() {
-		return questions;
-	}
-
-	public void setQuestions(List<QuestionEntity> questions) {
-		this.questions = questions;
-	}
-
-	public List<UserEntity> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<UserEntity> users) {
-		this.users = users;
 	}
 }

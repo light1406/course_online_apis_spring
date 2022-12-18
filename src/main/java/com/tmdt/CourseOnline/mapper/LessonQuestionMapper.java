@@ -13,19 +13,19 @@ public class LessonQuestionMapper {
 	@Autowired
 	private QuestionMapper questionMapper;
 	
-	public LessonQuestionDto mapEntityToDto(LessonQuestionEntity lessonQuestionEntity) {
-		return new LessonQuestionDto(
-				lessonQuestionEntity.getId(), 
-				lessonQuestionEntity.getTitle(), 
-				lessonQuestionEntity.getSerial(), 
-				lessonQuestionEntity.getDescription(), 
-				lessonQuestionEntity.getManufacture(), 
-				questionMapper.mapListEntityToListDto(lessonQuestionEntity.getQuestions()));
-	}
-
-	public List<LessonQuestionDto> mapListEntityToListDto(List<LessonQuestionEntity> lessonQuestionEntities) {
-		List<LessonQuestionDto> lessonQuestionDtos = new ArrayList<>();
-		lessonQuestionEntities.forEach(ls -> lessonQuestionDtos.add(mapEntityToDto(ls)));
-		return lessonQuestionDtos;
-	}
+//	public LessonQuestionDto mapEntityToDto(LessonQuestionEntity lessonQuestionEntity) {
+//		return new LessonQuestionDto(
+//				lessonQuestionEntity.getId(), 
+//				lessonQuestionEntity.getTitle(), 
+//				lessonQuestionEntity.getSerial(), 
+//				lessonQuestionEntity.getDescription(), 
+//				lessonQuestionEntity.getManufacture(), 
+//				questionMapper.mapListEntityToListDto(lessonQuestionEntity.getQuestions()));
+//	}
+//
+//	public List<LessonQuestionDto> mapListEntityToListDto(List<LessonQuestionEntity> lessonQuestionEntities) {
+//		List<LessonQuestionDto> lessonQuestionDtos = new ArrayList<>();
+//		lessonQuestionEntities.forEach(ls -> lessonQuestionDtos.add(mapEntityToDto(ls)));
+//		return lessonQuestionDtos;
+//	}
 }

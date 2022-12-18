@@ -15,19 +15,18 @@ public class ChapterMapper {
 	@Autowired
 	private LessonVideoMapper lessonVideoMapper;
 	
-	public ChapterDto mapEntityToDto(ChapterEntity chapterEntity) {
-		return new ChapterDto(
-				chapterEntity.getId(), 
-				chapterEntity.getTitle(), 
-				chapterEntity.getSerial(), 
-				lessonVideoMapper.mapListEntityToListDto(chapterEntity.getLessonVideos()), 
-				lessonQuestionMapper.mapListEntityToListDto(chapterEntity.getLessonQuestions()), 
-				chapterEntity.getManufacture());
-	}
-
-	public List<ChapterDto> mapListEntityToListDto(List<ChapterEntity> chapterEntities) {
-		List<ChapterDto> chapterDtos = new ArrayList<>();
-		chapterEntities.forEach(chap -> {chapterDtos.add(mapEntityToDto(chap));});
-		return chapterDtos;
-	}
+//	public ChapterDto mapEntityToDto(ChapterEntity chapterEntity) {
+//		return new ChapterDto(
+//				chapterEntity.getId(), 
+//				chapterEntity.getTitle(), 
+//				chapterEntity.getSerial(), 
+//				lessonVideoMapper.mapListEntityToListDto(chapterEntity.getLessonVideos()), 
+//				lessonQuestionMapper.mapListEntityToListDto(chapterEntity.getLessonQuestions()));
+//	}
+//
+//	public List<ChapterDto> mapListEntityToListDto(List<ChapterEntity> chapterEntities) {
+//		List<ChapterDto> chapterDtos = new ArrayList<>();
+//		chapterEntities.forEach(chap -> {chapterDtos.add(mapEntityToDto(chap));});
+//		return chapterDtos;
+//	}
 }

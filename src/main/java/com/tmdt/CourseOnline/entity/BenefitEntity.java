@@ -1,8 +1,6 @@
 package com.tmdt.CourseOnline.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -13,7 +11,6 @@ import jakarta.persistence.Table;
 public class BenefitEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	private String description;
 
@@ -21,8 +18,12 @@ public class BenefitEntity {
 	@JoinColumn(name = "course_id")
 	private CourseEntity course;
 
-	public BenefitEntity(String description) {
+	public BenefitEntity() {
+	}
+
+	public BenefitEntity(String id, String description) {
 		super();
+		this.id = id;
 		this.description = description;
 	}
 

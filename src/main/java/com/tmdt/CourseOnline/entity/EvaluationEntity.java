@@ -29,6 +29,8 @@ public class EvaluationEntity {
 	@JoinColumn(name = "course_id")
 	private CourseEntity course;
 
+	public EvaluationEntity() {}
+	
 	public EvaluationEntity(String id, int score, String comment, Date time, UserEntity user, CourseEntity course) {
 		super();
 		this.id = id;

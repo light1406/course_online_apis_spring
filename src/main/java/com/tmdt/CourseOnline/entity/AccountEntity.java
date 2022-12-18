@@ -13,10 +13,13 @@ public class AccountEntity {
 	private String username;
 	private String password;
 	private int role;
-	
+
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private UserEntity user;
+
+	public AccountEntity() {
+	}
 
 	public AccountEntity(String username, String password, int role, UserEntity user) {
 		super();

@@ -16,18 +16,18 @@ public class OrderMapper {
 	@Autowired
 	private UserMapper userMapper;
 	
-	public OrderDto mapEntityToDto(OrderEntity orderEntity) {
-		return new OrderDto(
-				orderEntity.getId(), 
-				userMapper.mapEntityToDto(orderEntity.getUser()), 
-				courseMapper.mapListEntityToListDto(orderEntity.getCourses()), 
-				orderEntity.getStatus(), 
-				orderEntity.getPurchaseDate());
-	}
+//	public OrderDto mapEntityToDto(OrderEntity orderEntity) {
+//		return new OrderDto(
+//				orderEntity.getId(), 
+//				userMapper.mapEntityToDto(orderEntity.getUser()), 
+//				courseMapper.mapListEntityToListDto(orderEntity.getCourses()), 
+//				orderEntity.getStatus(), 
+//				orderEntity.getPurchaseDate());
+//	}
 
-	public List<OrderDto> mapListEntityToListDto(List<OrderEntity> orderEntities) {
-		List<OrderDto> orderDtos = new ArrayList<>();
-		orderEntities.forEach(o -> {orderDtos.add(mapEntityToDto(o));});
-		return orderDtos;
-	}
+//	public List<OrderDto> mapListEntityToListDto(List<OrderEntity> orderEntities) {
+//		List<OrderDto> orderDtos = new ArrayList<>();
+//		orderEntities.forEach(o -> {orderDtos.add(mapEntityToDto(o));});
+//		return orderDtos;
+//	}
 }

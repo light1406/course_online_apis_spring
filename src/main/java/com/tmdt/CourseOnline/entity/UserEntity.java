@@ -2,6 +2,7 @@ package com.tmdt.CourseOnline.entity;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +22,7 @@ public class UserEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	private String fname;
+	@Column(name="avtURL")
 	private String avtUrl;
 	private int age;
 	private String email;
@@ -56,9 +58,8 @@ public class UserEntity {
 	@OneToMany(mappedBy = "user")
 	private List<CommentEntity> comments;
 	
-	@OneToMany(mappedBy = "user")
-	private List<ReplyEntity> replies;
-
+	public UserEntity() {}
+	
 	public UserEntity(String fname, String avtUrl, int age, String email, String phone) {
 		this.fname = fname;
 		this.avtUrl = avtUrl;
@@ -145,5 +146,29 @@ public class UserEntity {
 
 	public void setLearnedLessonVideos(List<LessonVideoEntity> learnedLessonVideos) {
 		this.learnedLessonVideos = learnedLessonVideos;
+	}
+
+	public List<OrderEntity> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<OrderEntity> orders) {
+		this.orders = orders;
+	}
+
+	public List<EvaluationEntity> getEvaluations() {
+		return evaluations;
+	}
+
+	public void setEvaluations(List<EvaluationEntity> evaluations) {
+		this.evaluations = evaluations;
+	}
+
+	public List<CommentEntity> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentEntity> comments) {
+		this.comments = comments;
 	}
 }

@@ -10,20 +10,18 @@ public class ChapterDto {
 	private int serial;
 	private List<LessonVideoDto> lessonVideos;
 	private List<LessonQuestionDto> lessonQuestions;
-	private Date manufacture;
 
 	public ChapterDto() {
 	}
 
 	public ChapterDto(String id, String title, int serial, List<LessonVideoDto> lessonVideos,
-			List<LessonQuestionDto> lessonQuestions, Date manufacture) {
+			List<LessonQuestionDto> lessonQuestions) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.serial = serial;
 		this.lessonVideos = lessonVideos;
 		this.lessonQuestions = lessonQuestions;
-		this.manufacture = manufacture;
 	}
 
 	public String getId() {
@@ -64,13 +62,5 @@ public class ChapterDto {
 
 	public void setLessonQuestions(List<LessonQuestionDto> lessonQuestions) {
 		this.lessonQuestions = lessonQuestions;
-	}
-
-	public Date getManufacture() {
-		return manufacture;
-	}
-
-	public void setManufacture(Date manufacture) {
-		this.manufacture = manufacture;
 	}
 }

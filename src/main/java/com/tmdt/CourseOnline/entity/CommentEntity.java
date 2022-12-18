@@ -30,8 +30,14 @@ public class CommentEntity {
 	@JoinColumn(name = "lesson_video_id")
 	private LessonVideoEntity lessonVideo;
 
+	@ManyToOne
+	@JoinColumn(name = "comment_id")
+	private CommentEntity commentForReply;
+
 	@OneToMany(mappedBy = "commentForReply")
-	private List<ReplyEntity> replies;
+	private List<CommentEntity> replies;
+	
+	public CommentEntity() {}
 
 	public CommentEntity(String id, String comment, Date time, UserEntity user, LessonVideoEntity lessonVideo) {
 		super();
@@ -78,15 +84,23 @@ public class CommentEntity {
 		return lessonVideo;
 	}
 
-	public List<ReplyEntity> getReplies() {
+	public void setLessonVideo(LessonVideoEntity lessonVideo) {
+		this.lessonVideo = lessonVideo;
+	}
+
+	public CommentEntity getCommentForReply() {
+		return commentForReply;
+	}
+
+	public void setCommentForReply(CommentEntity commentForReply) {
+		this.commentForReply = commentForReply;
+	}
+
+	public List<CommentEntity> getReplies() {
 		return replies;
 	}
 
-	public void setReplies(List<ReplyEntity> replies) {
+	public void setReplies(List<CommentEntity> replies) {
 		this.replies = replies;
-	}
-
-	public void setLessonVideo(LessonVideoEntity lessonVideo) {
-		this.lessonVideo = lessonVideo;
 	}
 }
