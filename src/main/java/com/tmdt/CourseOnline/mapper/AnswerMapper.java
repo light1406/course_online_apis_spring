@@ -2,13 +2,15 @@ package com.tmdt.CourseOnline.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-import com.tmdt.CourseOnline.constrain.IDCreator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.tmdt.CourseOnline.dto.AnswerDto;
 import com.tmdt.CourseOnline.entity.AnswerEntity;
 
 public class AnswerMapper {
+	
 	public AnswerDto mapEntityToDto(AnswerEntity answerEntity) {
 		return new AnswerDto(
 				answerEntity.getKey(), 

@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tmdt.CourseOnline.dto.LessonVideoDto;
 import com.tmdt.CourseOnline.entity.LessonVideoEntity;
+import com.tmdt.CourseOnline.mapper.LessonVideoMapper;
 import com.tmdt.CourseOnline.reponsitory.LessonVideoRepository;
 import com.tmdt.CourseOnline.service.LessonVideoService;
 
@@ -14,7 +16,16 @@ public class LessonVideoServiceImpl implements LessonVideoService {
 
 	@Autowired
 	private LessonVideoRepository lessonVideoRepository;
+	
+	@Autowired
+	private LessonVideoMapper lessonVideoMapper;
 
+	@Override
+	public List<LessonVideoDto> getLessonVideoDtoByChapterId(String chapterId){
+		return lessonVideoMapper.mapListEntityToListDto(
+				lessonVideoRepository.getLessonVideoEntitiesByChapterId(chapterId));
+	}
+	
 	@Override
 	public void addLessonVideo(LessonVideoEntity lessonVideoEntity) {
 		lessonVideoRepository.save(lessonVideoEntity);
@@ -26,12 +37,12 @@ public class LessonVideoServiceImpl implements LessonVideoService {
 	}
 
 	@Override
-	public List<LessonVideoEntity> getEntityByChapterid() {
-		return null;
+	public List<LessonVideoEntity> getEntityByChapterid(String ChapterId) {
+		return lessonVideoRepository.getLessonVideoEntitiesByChapterId(ChapterId);
 	}
 
 	@Override
-	public LessonVideoEntity getById(String lessonId) {
-		return lessonVideoRepository.findById(lessonId).get();
+	public LessonVideoDto getById(String lessonId) {
+		return lessonVideoMapper.mapEntityToDto(lessonVideoRepository.findById(lessonId).get());
 	}
 }

@@ -110,20 +110,4 @@ public class LessonVideoEntity {
 	public void setChapter(ChapterEntity chapter) {
 		this.chapter = chapter;
 	}
-
-	public List<UserEntity> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<UserEntity> users) {
-		this.users = users;
-	}
-
-	public List<CommentEntity> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<CommentEntity> comments) {
-		this.comments = comments;
-	}
 }

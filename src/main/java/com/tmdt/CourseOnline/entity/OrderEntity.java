@@ -14,28 +14,21 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "`order`")
 public class OrderEntity {
-	
+
 	@Id
 	private String id;
 	private String status;
 	private Date purchaseDate; // ngay mua khoa hoc
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private UserEntity user;
-	
+
 	@ManyToMany
-	@JoinTable(name = "order_detail"
-			, joinColumns = @JoinColumn(name = "order_id")
-			, inverseJoinColumns = @JoinColumn(name = "course_id"))
+	@JoinTable(name = "order_detail", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
 	private List<CourseEntity> courses;
 
-	public OrderEntity() {}
-	
-	public OrderEntity(String status, Date purchaseDate) {
-		super();
-		this.status = status;
-		this.purchaseDate = purchaseDate;
+	public OrderEntity() {
 	}
 
 	public String getId() {

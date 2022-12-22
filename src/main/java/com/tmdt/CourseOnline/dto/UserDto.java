@@ -14,7 +14,7 @@ public class UserDto {
 	private List<LessonVideoDto> learnedLessonVideos;
 
 	public UserDto() {
-	}
+	}	
 
 	public UserDto(String id, String fname, String avtUrl, int age, String email, String phone,
 			List<CourseDto> registeredCourses, List<LessonQuestionDto> learnedLessonQuestions,
