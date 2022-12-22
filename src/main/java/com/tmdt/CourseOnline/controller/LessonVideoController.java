@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tmdt.CourseOnline.dto.LessonVideoDto;
 import com.tmdt.CourseOnline.entity.LessonVideoEntity;
 import com.tmdt.CourseOnline.service.LessonVideoService;
 
@@ -29,5 +30,10 @@ public class LessonVideoController {
 	@PostMapping("/add")
 	public void addLessonVideo(@RequestBody LessonVideoEntity lessonVideoEntity) {
 		lessonVideoService.addLessonVideo(lessonVideoEntity);
+	}
+	
+	@GetMapping("/get-by-id")
+	public LessonVideoDto getLessonVideoById(String id) {
+		return lessonVideoService.getById(id);
 	}
 }

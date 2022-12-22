@@ -60,4 +60,12 @@ public class OrderDto {
 	public void setPurchaseDate(Date purchaseDate) {
 		this.purchaseDate = purchaseDate;
 	}
+	
+	public double getTotalPrice() {
+		double total = 0;
+		for (CourseDto course: courses) {
+			total += course.getPrice();
+		}
+		return total;
+	}
 }

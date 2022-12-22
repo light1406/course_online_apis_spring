@@ -2,16 +2,19 @@ package com.tmdt.CourseOnline.service;
 
 import java.util.List;
 
+import com.tmdt.CourseOnline.dto.LessonVideoDto;
 import com.tmdt.CourseOnline.entity.LessonVideoEntity;
 
 public interface LessonVideoService {
 
-	LessonVideoEntity getById(String lessonId);
+	LessonVideoDto getById(String lessonId);
 
-	List<LessonVideoEntity> getEntityByChapterid();
+	List<LessonVideoEntity> getEntityByChapterid(String id);
 
 	List<LessonVideoEntity> getAllEntity();
 
 	void addLessonVideo(LessonVideoEntity lessonVideoEntity);
+
+	List<LessonVideoDto> getLessonVideoDtoByChapterId(String chapterId);
 
 }

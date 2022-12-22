@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tmdt.CourseOnline.dto.CourseDto;
 import com.tmdt.CourseOnline.entity.CourseEntity;
 import com.tmdt.CourseOnline.service.CourseService;
 
@@ -23,6 +24,21 @@ public class CourseController {
 	
 	@Autowired
 	private CourseService courseService;
+	
+	@GetMapping("/filter-by-category")
+	public List<CourseDto> getCoursesByListCategoryId(@RequestParam String categoryId){
+		return courseService.getCoursesByCategoryId(categoryId);
+	}
+	
+	@GetMapping("/get-all")
+	public List<CourseDto> getAllCourses(){
+		return courseService.getAllCourseDto();
+	}
+	
+	@GetMapping("/get-dto-by-id")
+	public CourseDto getCourseDetailByCourseId(@RequestParam String id) {
+		return courseService.getCourseDetail(id);
+	}
 	
 	@PostMapping("/add")
 	public CourseEntity addCourse(@RequestBody CourseEntity courseEntity) {

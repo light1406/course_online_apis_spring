@@ -8,6 +8,7 @@ public class CourseDto {
 	private String title;
 	private String category;
 	private String description;
+	private String coverUrl;
 	private List<String> benefit;
 	private List<ChapterDto> chapters;
 	private double price;
@@ -17,13 +18,15 @@ public class CourseDto {
 	public CourseDto() {
 	}
 
-	public CourseDto(String id, String title, String category, String description, List<String> benefit,
-			List<ChapterDto> chapters, double price, Date manufacture, List<EvaluationDto> evaluations) {
+	public CourseDto(String id, String title, String category, String description, String coverUrl,
+			List<String> benefit, List<ChapterDto> chapters, double price, Date manufacture,
+			List<EvaluationDto> evaluations) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.category = category;
 		this.description = description;
+		this.coverUrl = coverUrl;
 		this.benefit = benefit;
 		this.chapters = chapters;
 		this.price = price;
@@ -101,5 +104,22 @@ public class CourseDto {
 
 	public void setManufacture(Date manufacture) {
 		this.manufacture = manufacture;
+	}
+
+	public String getCoverUrl() {
+		return coverUrl;
+	}
+
+	public void setCoverUrl(String coverUrl) {
+		this.coverUrl = coverUrl;
+	}
+	
+	public int getLessonNumber() {
+		int count = 0;
+		for(ChapterDto chap: chapters) {
+			count += chap.getLessonVideos().size();
+			count += chap.getLessonQuestions().size();
+		}
+		return count;
 	}
 }

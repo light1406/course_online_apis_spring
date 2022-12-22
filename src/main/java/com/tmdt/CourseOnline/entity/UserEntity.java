@@ -19,7 +19,6 @@ import jakarta.persistence.Table;
 public class UserEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	private String fname;
 	@Column(name="avtURL")
@@ -116,22 +115,6 @@ public class UserEntity {
 		this.phone = phone;
 	}
 
-	public AccountEntity getAccount() {
-		return account;
-	}
-
-	public void setAccount(AccountEntity account) {
-		this.account = account;
-	}
-
-	public List<CourseEntity> getCoursesOfUser() {
-		return coursesOfUser;
-	}
-
-	public void setCoursesOfUser(List<CourseEntity> coursesOfUser) {
-		this.coursesOfUser = coursesOfUser;
-	}
-
 	public List<LessonQuestionEntity> getLearnedLessonQuestions() {
 		return learnedLessonQuestions;
 	}
@@ -148,27 +131,11 @@ public class UserEntity {
 		this.learnedLessonVideos = learnedLessonVideos;
 	}
 
-	public List<OrderEntity> getOrders() {
-		return orders;
+	public List<CourseEntity> getCoursesOfUser() {
+		return coursesOfUser;
 	}
 
-	public void setOrders(List<OrderEntity> orders) {
-		this.orders = orders;
-	}
-
-	public List<EvaluationEntity> getEvaluations() {
-		return evaluations;
-	}
-
-	public void setEvaluations(List<EvaluationEntity> evaluations) {
-		this.evaluations = evaluations;
-	}
-
-	public List<CommentEntity> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<CommentEntity> comments) {
-		this.comments = comments;
+	public void setCoursesOfUser(List<CourseEntity> coursesOfUser) {
+		this.coursesOfUser = coursesOfUser;
 	}
 }

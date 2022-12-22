@@ -104,28 +104,12 @@ public class CourseEntity {
 		this.description = description;
 	}
 
-	public List<OrderEntity> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<OrderEntity> orders) {
-		this.orders = orders;
-	}
-
 	public String getCoverUrl() {
 		return coverUrl;
 	}
 
 	public void setCoverUrl(String coverUrl) {
 		this.coverUrl = coverUrl;
-	}
-
-	public List<EvaluationEntity> getEvaluations() {
-		return evaluations;
-	}
-
-	public void setEvaluations(List<EvaluationEntity> evaluations) {
-		this.evaluations = evaluations;
 	}
 
 	public Date getManufacture() {

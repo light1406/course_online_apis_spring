@@ -95,12 +95,4 @@ public class CommentEntity {
 	public void setCommentForReply(CommentEntity commentForReply) {
 		this.commentForReply = commentForReply;
 	}
-
-	public List<CommentEntity> getReplies() {
-		return replies;
-	}
-
-	public void setReplies(List<CommentEntity> replies) {
-		this.replies = replies;
-	}
 }
